@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>林巧婷 Rebecca｜行銷作品集</title>
+<meta name="description" content="近 10 年品牌行銷，橫跨美妝・鍋具・母嬰，從 KOL 操盤、產品溝通到內容經營。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Design tokens ===== */
+:root{
+  --bg:#FDFCFA;          /* 暖白 */
+  --bg-cream:#F5F0E8;    /* 區塊暖米底 */
+  --ink:#1A1A1A;         /* 主文近黑 */
+  --ink-2:#5A554F;       /* 次要文字 暖灰 */
+  --ink-3:#928B82;       /* 更淡 */
+  --brick:#C8553D;       /* 強調 磚紅 */
+  --brick-deep:#A8412E;  /* hover */
+  --line:#E8E2D9;        /* 分隔線 */
+  --maxw:1080px;
+  --serif:'Noto Serif TC',serif;
+  --sans:'Noto Serif TC',serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.8;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--brick);color:#fff}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* ===== Nav ===== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px clamp(20px,5vw,56px);
+  transition:padding .35s ease,background .35s ease,box-shadow .35s ease;
+}
+.nav.scrolled{
+  padding:14px clamp(20px,5vw,56px);
+  background:rgba(253,252,250,.88);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  box-shadow:0 1px 0 var(--line);
+}
+.nav-brand{
+  font-family:var(--serif);font-weight:700;font-size:1.15rem;letter-spacing:.5px;
+}
+.nav-brand .en{color:var(--brick);font-style:italic;font-weight:600}
+.nav-links{display:flex;gap:30px}
+.nav-links a{
+  font-size:.82rem;letter-spacing:1.5px;color:var(--ink-2);
+  position:relative;padding:4px 0;transition:color .25s;
+}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:0;width:0;height:1.5px;
+  background:var(--brick);transition:width .3s cubic-bezier(.22,1,.36,1);
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{width:100%}
+@media(max-width:720px){.nav-links{display:none}}
+
+/* ===== Layout helpers ===== */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+section{padding:clamp(72px,12vh,140px) 0}
+.sec-label{
+  display:flex;align-items:center;gap:14px;
+  font-size:.78rem;letter-spacing:3px;color:var(--brick);
+  text-transform:uppercase;font-weight:700;margin-bottom:26px;
+}
+.sec-label .no{font-family:var(--serif);font-style:italic;font-size:.95rem}
+.sec-label .bar{width:38px;height:1.5px;background:var(--brick);opacity:.5}
+.sec-title{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.3;
+  letter-spacing:.5px;margin-bottom:18px;
+}
+.sec-intro{color:var(--ink-2);max-width:560px;font-size:1rem}
+
+/* ===== Hero ===== */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;
+  padding-top:90px;overflow:hidden;
+}
+.hero::before{ /* 暖色光暈氛圍 */
+  content:'';position:absolute;top:-15%;right:-10%;
+  width:680px;height:680px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,85,61,.07),transparent 65%);
+  pointer-events:none;
+}
+.hero::after{ /* 背景超大裝飾字 */
+  content:'PORTFOLIO';position:absolute;right:clamp(-40px,-2vw,0px);bottom:6%;
+  font-family:var(--serif);font-weight:700;font-size:clamp(3rem,11vw,9rem);
+  color:var(--ink);opacity:.035;letter-spacing:8px;pointer-events:none;white-space:nowrap;
+}
+.hero-inner{position:relative;z-index:2;width:100%}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.8rem;letter-spacing:2px;color:var(--ink-2);margin-bottom:28px;
+}
+.hero-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--brick);
+  animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.hero h1{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(2.8rem,9vw,5.6rem);line-height:1.05;letter-spacing:1px;
+  margin-bottom:6px;
+}
+.hero h1 .en{
+  display:block;font-style:italic;font-weight:600;color:var(--brick);
+  font-size:clamp(1.6rem,5vw,3rem);margin-top:8px;letter-spacing:2px;
+}
+.hero-lead{
+  font-size:clamp(1.05rem,2.2vw,1.35rem);color:var(--ink-2);line-height:1.7;
+  max-width:600px;margin:30px 0 14px;font-weight:300;
+}
+.hero-lead b{color:var(--ink);font-weight:500}
+.hero-lead .hl{color:var(--brick);font-weight:500}
+.hero-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.chip{
+  font-size:.86rem;letter-spacing:1px;color:var(--ink-2);
+  border:1px solid var(--line);border-radius:30px;padding:7px 18px;
+  transition:.25s;
+}
+.chip:hover{border-color:var(--brick);color:var(--brick)}
+/* hero stats */
+.hero-stats{
+  display:flex;gap:clamp(24px,5vw,60px);flex-wrap:wrap;
+  margin-top:52px;padding-top:38px;border-top:1px solid var(--line);
+}
+.hstat .num{
+  font-family:var(--serif);font-weight:700;color:var(--brick);
+  font-size:clamp(2rem,5vw,2.9rem);line-height:1;letter-spacing:.5px;
+}
+.hstat .num small{font-size:.5em;font-weight:600}
+.hstat .lbl{font-size:.82rem;color:var(--ink-2);margin-top:9px;letter-spacing:.5px}
+.scroll-cue{
+  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+  font-size:.72rem;letter-spacing:3px;color:var(--ink-3);
+  display:flex;flex-direction:column;align-items:center;gap:10px;z-index:2;
+}
+.scroll-cue .ln{width:1px;height:42px;background:linear-gradient(var(--brick),transparent);
+  animation:drop 2s ease-in-out infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}
+  51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media(max-width:720px){.scroll-cue{display:none}}
+
+/* ===== 能力地圖 ===== */
+.cap-grid{display:grid;grid-template-columns:1fr;gap:0;margin-top:48px;border-top:1px solid var(--line)}
+.cap-row{
+  display:grid;grid-template-columns:54px 1fr 1.3fr;gap:24px;align-items:baseline;
+  padding:28px 8px;border-bottom:1px solid var(--line);transition:.3s;
+}
+.cap-row:hover{background:var(--bg-cream);padding-left:20px}
+.cap-no{font-family:var(--serif);font-style:italic;color:var(--brick);font-size:1.1rem}
+.cap-name{font-family:var(--serif);font-weight:600;font-size:1.25rem;letter-spacing:.5px}
+.cap-desc{color:var(--ink-2);font-size:.96rem}
+@media(max-width:680px){
+  .cap-row{grid-template-columns:40px 1fr;gap:8px 16px}
+  .cap-desc{grid-column:1/-1;padding-left:56px;margin-top:2px}
+}
+
+/* ===== 代表作 ===== */
+.works{background:var(--bg-cream)}
+.case{
+  display:grid;grid-template-columns:96px 1fr;gap:clamp(20px,4vw,48px);
+  padding:clamp(40px,6vw,64px) 0;border-bottom:1px solid var(--line);
+}
+.case:last-child{border-bottom:none}
+.case-no{font-family:var(--serif);font-weight:700;font-size:clamp(2.4rem,6vw,4rem);
+  color:var(--brick);line-height:.9;opacity:.85}
+.case-cat{font-size:.78rem;letter-spacing:1.5px;color:var(--ink-3);margin-bottom:12px;text-transform:uppercase}
+.case-title{font-family:var(--serif);font-weight:700;font-size:clamp(1.35rem,3vw,2rem);
+  line-height:1.35;margin-bottom:8px}
+.case-role{display:inline-block;font-size:.82rem;color:var(--brick);font-weight:500;
+  border:1px solid rgba(200,85,61,.3);border-radius:20px;padding:3px 14px;margin-bottom:26px}
+.case-block{margin-bottom:20px}
+.case-block h4{font-size:.78rem;letter-spacing:2px;color:var(--ink-3);text-transform:uppercase;
+  font-weight:700;margin-bottom:7px}
+.case-block p{color:var(--ink-2);font-size:.98rem}
+.case-block--hl{background:var(--bg-cream);border-left:3px solid var(--brick);border-radius:0 8px 8px 0;padding:14px 18px;margin-top:24px}
+.case-block--hl h4{color:var(--brick)}
+.case-strat{list-style:none;display:flex;flex-direction:column;gap:9px}
+.case-strat li{display:flex;gap:12px;color:var(--ink-2);font-size:.98rem}
+.case-strat li b{color:var(--ink);font-weight:600}
+.case-strat .s-no{font-family:var(--serif);font-style:italic;color:var(--brick);flex-shrink:0}
+/* 成效數字 */
+.results{display:flex;gap:clamp(20px,4vw,44px);flex-wrap:wrap;margin-top:26px;
+  padding-top:26px;border-top:1px dashed var(--line)}
+.res .rnum{font-family:var(--serif);font-weight:700;color:var(--brick);
+  font-size:clamp(1.8rem,4.5vw,2.7rem);line-height:1;letter-spacing:.5px}
+.res .rnum small{font-size:.45em;font-weight:600}
+.res .rlbl{font-size:.84rem;color:var(--ink-2);margin-top:8px;max-width:170px}
+.res-note{font-size:.82rem;color:var(--ink-3);margin-top:18px;font-style:italic}
+.case-figs{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.case-figs img{height:210px;width:auto;max-width:100%;border-radius:10px;
+  border:1px solid var(--line);box-shadow:0 8px 24px rgba(26,23,20,.10);
+  transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.case-figs img:hover{transform:translateY(-5px) scale(1.015)}
+@media(max-width:680px){.case-figs img{height:150px}}
+@media(max-width:680px){
+  .case{grid-template-columns:1fr;gap:14px}
+  .case-no{font-size:2.6rem}
+}
+
+/* ===== 關於我 ===== */
+.about-grid{display:grid;grid-template-columns:300px 1fr;gap:clamp(32px,6vw,72px);
+  align-items:center;margin-top:20px}
+.about-photo{position:relative;width:260px;max-width:100%}
+.about-photo img{width:260px;height:260px;border-radius:50%;object-fit:cover;
+  border:1px solid var(--line)}
+.about-photo::before{content:'';position:absolute;inset:-12px;border-radius:50%;
+  border:1px solid var(--brick);opacity:.3}
+.about-text p{font-size:clamp(1.2rem,2.6vw,1.55rem);line-height:1.85;color:var(--ink-2);
+  font-weight:300}
+.about-text p .hl{color:var(--brick);font-weight:500}
+.about-text p b{color:var(--ink);font-weight:500}
+.scope{margin-top:54px;display:grid;gap:26px}
+.scope-block h4{font-size:.78rem;letter-spacing:2px;color:var(--brick);text-transform:uppercase;font-weight:700;margin-bottom:14px}
+.chip-row{display:flex;gap:10px;flex-wrap:wrap}
+@media(max-width:680px){
+  .about-grid{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .about-text p{text-align:left}
+}
+
+/* ===== 證照 ===== */
+.certs{background:var(--bg-cream)}
+.cert-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:0;margin-top:44px;border-top:1px solid var(--line)}
+.cert{display:flex;gap:16px;align-items:flex-start;padding:24px 16px 24px 4px;
+  border-bottom:1px solid var(--line);transition:.3s}
+.cert:hover{background:var(--bg);padding-left:14px}
+.cert .ci{font-family:var(--serif);font-style:italic;color:var(--brick);font-size:1rem;flex-shrink:0;margin-top:2px}
+.cert .cn{font-weight:500;font-size:.98rem;line-height:1.5}
+.cert .cy{font-size:.82rem;color:var(--ink-3);margin-top:3px}
+
+/* ===== 聯絡 ===== */
+.contact{text-align:center}
+.contact .sec-label{justify-content:center}
+.contact h2{font-family:var(--serif);font-weight:700;font-size:clamp(2rem,6vw,3.4rem);
+  line-height:1.2;margin-bottom:18px}
+.contact h2 .en{color:var(--brick);font-style:italic}
+.contact-sub{color:var(--ink-2);max-width:480px;margin:0 auto 44px}
+.contact-links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.clink{display:inline-flex;align-items:center;gap:10px;font-size:1rem;
+  padding:15px 30px;border-radius:34px;transition:.3s;letter-spacing:.5px}
+.clink.primary{background:var(--ink);color:var(--bg)}
+.clink.primary:hover{background:var(--brick);transform:translateY(-2px);
+  box-shadow:0 10px 28px rgba(200,85,61,.28)}
+.clink.ghost{border:1px solid var(--line);color:var(--ink)}
+.clink.ghost:hover{border-color:var(--brick);color:var(--brick);transform:translateY(-2px)}
+
+/* ===== Footer ===== */
+footer{padding:40px 0;border-top:1px solid var(--line);text-align:center;
+  color:var(--ink-3);font-size:.82rem;letter-spacing:.5px}
+footer .en{font-family:var(--serif);font-style:italic;color:var(--brick)}
+
+/* ===== Reveal animation ===== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+.hero .stagger{opacity:0;transform:translateY(24px);animation:rise .9s cubic-bezier(.22,1,.36,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}
+.d4{animation-delay:.55s}.d5{animation-delay:.7s}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.hero .stagger{opacity:1!important;transform:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Nav ===== -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-brand">林巧婷 <span class="en">Rebecca</span></a>
+  <div class="nav-links">
+    <a href="#capabilities">能力</a>
+    <a href="#work">作品</a>
+    <a href="#about">關於</a>
+    <a href="#contact">聯絡</a>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<header class="hero" id="top">
+  <div class="wrap hero-inner">
+    <div class="hero-tag stagger d1"><span class="dot"></span>MARKETING PORTFOLIO ・ 近 10 年品牌行銷</div>
+    <h1 class="stagger d2">林巧婷<span class="en">Rebecca</span></h1>
+    <p class="hero-lead stagger d3">
+      近 10 年品牌行銷，橫跨 <b>美妝・鍋具・母嬰</b>，<br>
+      從 <span class="hl">KOL 操盤</span>、<span class="hl">產品溝通</span> 到 <span class="hl">內容經營</span> 一手包。
+    </p>
+    <div class="hero-tags stagger d4">
+      <span class="chip">美妝</span>
+      <span class="chip">鍋具</span>
+      <span class="chip">母嬰</span>
+    </div>
+    <div class="hero-stats stagger d5">
+      <div class="hstat"><div class="num">10<small>萬+</small></div><div class="lbl">直播觀看 · 10 分鐘達成</div></div>
+      <div class="hstat"><div class="num">90<small>萬</small></div><div class="lbl">單檔秒殺營收</div></div>
+      <div class="hstat"><div class="num">3<small>年</small></div><div class="lbl">SEO 內容長期經營</div></div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>SCROLL</span><span class="ln"></span></div>
+</header>
+
+<!-- ===== 能力地圖 ===== -->
+<section id="capabilities">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="no">01</span><span class="bar"></span>能力地圖 ・ CAPABILITIES</div>
+    <h2 class="sec-title reveal">從策略到落地，<br>全鏈路的行銷能力。</h2>
+    <p class="sec-intro reveal">短期戰役與長期經營都能獨立操盤——這是我跨三個產業累積下來的可遷移能力。</p>
+    <div class="cap-grid">
+      <div class="cap-row reveal"><span class="cap-no">i</span><span class="cap-name">整合行銷企劃</span><span class="cap-desc">行銷活動規劃與執行、年度大型展會操盤</span></div>
+      <div class="cap-row reveal"><span class="cap-no">ii</span><span class="cap-name">社群與內容行銷</span><span class="cap-desc">社群經營維護、內容企劃與產製</span></div>
+      <div class="cap-row reveal"><span class="cap-no">iii</span><span class="cap-name">KOL／直播電商操盤</span><span class="cap-desc">名人聲量整合、直播導購機制設計</span></div>
+      <div class="cap-row reveal"><span class="cap-no">iv</span><span class="cap-name">廣告投放與數據分析</span><span class="cap-desc">電商導流投放、即時數據監控與優化</span></div>
+      <div class="cap-row reveal"><span class="cap-no">v</span><span class="cap-name">SEO／AEO 長期內容經營</span><span class="cap-desc">用戶問卷洞察、關鍵字策略、消費者旅程佈局</span></div>
+      <div class="cap-row reveal"><span class="cap-no">vi</span><span class="cap-name">即時訊息行銷</span><span class="cap-desc">LINE 導購、FB 廣告引流(單篇觸及 26,368)</span></div>
+      <div class="cap-row reveal"><span class="cap-no">vii</span><span class="cap-name">口碑經營</span><span class="cap-desc">社群活動徵集 UGC、PTT／Mobile01 論壇導購</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 代表作 ===== -->
+<section id="work" class="works">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="no">02</span><span class="bar"></span>代表作 ・ SELECTED WORK</div>
+    <h2 class="sec-title reveal">三個產業，三種能力，<br>都用成效說話。</h2>
+
+    <!-- Case 01 -->
+    <article class="case reveal">
+      <div class="case-no">01</div>
+      <div class="case-body">
+        <div class="case-cat">美妝保養 · KOL／社群行銷 · 直播電商 · 2024</div>
+        <h3 class="case-title">康是美 KOL 直播檔期<br>10 分鐘破 10 萬觀看，創直播間單檔紀錄</h3>
+        <span class="case-role">角色：活動企劃</span>
+        <div class="case-block">
+          <h4>Challenge 挑戰</h4>
+          <p>保養品市場競爭激烈，如何在短時間內建立品牌信任、引爆導購聲量？</p>
+        </div>
+        <div class="case-block">
+          <h4>Strategy 策略</h4>
+          <ul class="case-strat">
+            <li><span class="s-no">1</span><span><b>強者聯手：</b>大眾藝人（小S）擴散聲量 × 彩妝大師（游絲棋老師）專業背書</span></li>
+            <li><span class="s-no">2</span><span><b>機制促動：</b>設計「直播限定抽獎」，把觀看人流轉化為互動與留存</span></li>
+            <li><span class="s-no">3</span><span><b>數據迭代：</b>即時監控數據，動態優化直播節奏與賣點溝通</span></li>
+          </ul>
+        </div>
+        <div class="results">
+          <div class="res"><div class="rnum">10<small>萬+</small></div><div class="rlbl">10 分鐘突破觀看人次，創康是美直播間單檔紀錄</div></div>
+          <div class="res"><div class="rnum">↑</div><div class="rlbl">抽獎機制有效拉升直播互動與留存</div></div>
+        </div>
+        <p class="res-note">＊ 強化品牌「高效・專業・實效」高端形象</p>
+        <div class="case-block case-block--hl">
+          <h4>資源與預算運用</h4>
+          <p>在有限的預算下，我將 70% 的預算集中於高轉化率的直播時段，並透過數據監測，將剩餘資源精準投放至高互動的社群版位。</p>
+        </div>
+        <div class="case-figs">
+          <img src="images/case1-xiaos.png" alt="康是美直播主視覺・徐熙娣小S">
+          <img src="images/case1-yousiqi.png" alt="康是美直播主視覺・游絲棋老師">
+        </div>
+      </div>
+    </article>
+
+    <!-- Case 02 -->
+    <article class="case reveal">
+      <div class="case-no">02</div>
+      <div class="case-body">
+        <div class="case-cat">鍋具家電 · 產品行銷 · 賣點溝通</div>
+        <h3 class="case-title">Diamond Chef 氣炸鍋<br>把「石墨烯技術」翻譯成餐桌上的健康・快速・美味</h3>
+        <span class="case-role">角色：行銷統籌</span>
+        <div class="case-block">
+          <h4>Challenge 挑戰</h4>
+          <p>技術規格（石墨烯）消費者無感，如何讓人秒懂價值、加速下單？</p>
+        </div>
+        <div class="case-block">
+          <h4>Strategy 策略</h4>
+          <ul class="case-strat">
+            <li><span class="s-no">→</span><span>把<b>技術語言轉譯成生活場景</b>，鎖定「健康／快速／美味」家庭情境，大幅縮短下單決策週期</span></li>
+          </ul>
+        </div>
+        <div class="results">
+          <div class="res"><div class="rnum">300<small>台</small></div><div class="rlbl">一檔直播限量秒殺</div></div>
+          <div class="res"><div class="rnum">90<small>萬</small></div><div class="rlbl">單檔創造營收</div></div>
+        </div>
+        <div class="case-block case-block--hl">
+          <h4>跨部門協作</h4>
+          <p>協調設計、開發與業務團隊，確保 3 方目標對齊，將原本預計兩週的開發時程縮短至 3 天，順利配合直播檔期上線。</p>
+        </div>
+        <div class="case-figs">
+          <img src="images/case2-a.png" alt="Diamond Chef 氣炸鍋直播・石墨烯技術">
+          <img src="images/case2-c.png" alt="Diamond Chef 案例">
+        </div>
+      </div>
+    </article>
+
+    <!-- Case 03 -->
+    <article class="case reveal">
+      <div class="case-no">03</div>
+      <div class="case-body">
+        <div class="case-cat">母嬰 · 消費者洞察 · 內容行銷 · SEO／AEO（依保密協議匿名）</div>
+        <h3 class="case-title">某大型母嬰電商平台 SEO／AEO 內容經營<br>3 年打造母嬰「全旅程」內容資產</h3>
+        <span class="case-role">角色：SEO 內容企劃</span>
+        <div class="case-block">
+          <h4>Challenge 挑戰</h4>
+          <p>如何用內容在「孕期 → 哺乳 → 育兒」每個階段攔截搜尋需求、建立專業信任？</p>
+        </div>
+        <div class="case-block">
+          <h4>Strategy 策略</h4>
+          <ul class="case-strat">
+            <li><span class="s-no">1</span><span><b>用戶洞察：</b>透過孕期／產後問卷調查，挖掘媽媽們的真實痛點與情境需求</span></li>
+            <li><span class="s-no">2</span><span><b>痛點轉化：</b>將痛點結合產品與使用情境，轉化為精準的內容選題</span></li>
+            <li><span class="s-no">3</span><span><b>旅程佈局：</b>依「孕期→哺乳→育兒」消費者旅程長期經營，累積可複利的內容資產</span></li>
+          </ul>
+        </div>
+        <div class="results">
+          <div class="res"><div class="rnum">3<small>年</small></div><div class="rlbl">持續穩定經營</div></div>
+          <div class="res"><div class="rnum">近百<small>篇</small></div><div class="rlbl">產出內容</div></div>
+          <div class="res"><div class="rnum">全旅程</div><div class="rlbl">孕期→哺乳→育兒內容佈局</div></div>
+        </div>
+        <div class="case-block case-block--hl">
+          <h4>價值延伸思考</h4>
+          <p>從問券調查中，可以找到消費者的痛點進而轉化成產品頁使用情境導引優化拆解障礙，驗證了『精準對話』比『強力推銷』更具轉換力。</p>
+        </div>
+        <div class="case-figs">
+          <img src="images/case3-a.jpg" alt="母嬰 SEO 內容・全孕期週記">
+          <img src="images/case3-b.jpg" alt="母嬰 SEO 內容・母乳哺育">
+          <img src="images/case3-c.png" alt="媽媽報報問卷調查・妊娠紋大調查">
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== 關於我 ===== -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="no">03</span><span class="bar"></span>關於我 ・ ABOUT</div>
+    <div class="about-grid">
+      <div class="about-photo reveal"><img src="profile.png" alt="林巧婷 Rebecca"></div>
+      <div class="about-text reveal">
+        <p>
+          擁有 10 年深厚行銷實戰經驗，擅長制定並執行全年度品牌策略與專案，持續超額達成年度行銷目標。精通數據分析（GA、會員資料）與競品研究，驅動精準的個人化推薦方案。具備強大的跨部門協作與對外溝通能力，能擔任業務、企劃、內容開發之間的橋樑。獨立操作多平台社群（FB、LINE、IG、YouTube），並整合 KOL 合作與內容行銷，致力於將品牌價值高效轉化為實質的商業效益。
+        </p>
+      </div>
+    </div>
+    <div class="scope reveal">
+      <div class="scope-block">
+        <h4>操作過的電商平台</h4>
+        <div class="chip-row">
+          <span class="chip">Momo</span>
+          <span class="chip">蝦皮</span>
+          <span class="chip">friday 購物</span>
+          <span class="chip">Shopline</span>
+          <span class="chip">cyberbiz</span>
+          <span class="chip">康是美網購</span>
+        </div>
+      </div>
+      <div class="scope-block">
+        <h4>合作品牌</h4>
+        <div class="chip-row">
+          <span class="chip">康是美 nywow o</span>
+          <span class="chip">Jovclé</span>
+          <span class="chip">Diamond Chef</span>
+          <span class="chip">大型母嬰電商平台</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 證照 ===== -->
+<section id="certs" class="certs">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="no">04</span><span class="bar"></span>證照認證 ・ CERTIFICATIONS</div>
+    <h2 class="sec-title reveal">數據與數位能力，<br>有官方認證背書。</h2>
+    <div class="cert-list">
+      <div class="cert reveal"><span class="ci">01</span><div><div class="cn">Google Ads 搜尋廣告認證</div><div class="cy">2023</div></div></div>
+      <div class="cert reveal"><span class="ci">02</span><div><div class="cn">Google Analytics 4（GA4）認證</div><div class="cy">2023</div></div></div>
+      <div class="cert reveal"><span class="ci">03</span><div><div class="cn">Google Analytics 個人認證</div><div class="cy">2023</div></div></div>
+      <div class="cert reveal"><span class="ci">04</span><div><div class="cn">Google 數位人才結業證書</div><div class="cy">2023</div></div></div>
+      <div class="cert reveal"><span class="ci">05</span><div><div class="cn">企業永續管理證照培訓（80 小時）</div><div class="cy">2023</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 聯絡 ===== -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="sec-label reveal"><span class="no">05</span><span class="bar"></span>聯絡 ・ CONTACT</div>
+    <h2 class="reveal">一起把品牌<br>做出 <span class="en">成效</span>。</h2>
+    <p class="contact-sub reveal">歡迎聊聊合作機會，或任何行銷上的挑戰。</p>
+    <div class="contact-links reveal">
+      <a class="clink primary" href="mailto:aa0206aa@gmail.com">✉ aa0206aa@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 林巧婷 <span class="en">Rebecca</span> ・ Marketing Portfolio
+</footer>
+
+<script>
+// Nav scroll state
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>40);
+onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+// Reveal on scroll
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.14,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
