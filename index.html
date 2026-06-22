@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
 <style>
 /* ===== Design tokens ===== */
 :root{
@@ -337,7 +339,7 @@ footer .en{font-family:var(--serif);font-style:italic;color:var(--brick)}
     <h2 class="sec-title reveal">三個產業，三種能力，<br>都用成效說話。</h2>
 
     <!-- Case 01 -->
-    <article class="case reveal">
+    <article class="case">
       <div class="case-no">01</div>
       <div class="case-body">
         <div class="case-cat">美妝保養 · KOL／社群行銷 · 直播電商 · 2024</div>
@@ -372,7 +374,7 @@ footer .en{font-family:var(--serif);font-style:italic;color:var(--brick)}
     </article>
 
     <!-- Case 02 -->
-    <article class="case reveal">
+    <article class="case">
       <div class="case-no">02</div>
       <div class="case-body">
         <div class="case-cat">鍋具家電 · 產品行銷 · 賣點溝通</div>
@@ -404,7 +406,7 @@ footer .en{font-family:var(--serif);font-style:italic;color:var(--brick)}
     </article>
 
     <!-- Case 03 -->
-    <article class="case reveal">
+    <article class="case">
       <div class="case-no">03</div>
       <div class="case-body">
         <div class="case-cat">母嬰 · 消費者洞察 · 內容行銷 · SEO／AEO（依保密協議匿名）</div>
@@ -511,6 +513,22 @@ footer .en{font-family:var(--serif);font-style:italic;color:var(--brick)}
 </footer>
 
 <script>
+// GSAP card fade-in
+gsap.registerPlugin(ScrollTrigger);
+gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+  gsap.utils.toArray('.case').forEach(card => {
+    const tl = gsap.timeline({
+      scrollTrigger: { trigger: card, start: 'top 82%', toggleActions: 'play none none reset' }
+    });
+    tl.from(card.querySelector('.case-no'), {
+      autoAlpha: 0, x: -20, duration: 0.5, ease: 'power2.out'
+    })
+    .from(card.querySelector('.case-body'), {
+      autoAlpha: 0, y: 30, duration: 0.7, ease: 'power2.out'
+    }, '-=0.3');
+  });
+});
+
 // Nav scroll state
 const nav=document.getElementById('nav');
 const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>40);
