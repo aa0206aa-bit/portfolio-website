@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollSmoother.min.js"></script>
 <style>
 /* ===== Design tokens ===== */
 :root{
@@ -26,7 +27,9 @@
   --sans:'Noto Serif TC',serif;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:auto}
+#smooth-wrapper{overflow:hidden;position:fixed;height:100%;width:100%;top:0;left:0}
+#smooth-content{overflow:visible;width:100%}
 body{
   background:var(--bg);
   color:var(--ink);
@@ -291,6 +294,8 @@ footer .en{font-family:var(--serif);font-style:italic;color:var(--brick)}
   </div>
 </nav>
 
+<div id="smooth-wrapper"><div id="smooth-content">
+
 <!-- ===== Hero ===== -->
 <header class="hero" id="top">
   <div class="wrap hero-inner">
@@ -366,7 +371,7 @@ footer .en{font-family:var(--serif);font-style:italic;color:var(--brick)}
           <h4>資源與預算運用</h4>
           <p>在有限的預算下，我將 70% 的預算集中於高轉化率的直播時段，並透過數據監測，將剩餘資源精準投放至高互動的社群版位。</p>
         </div>
-        <div class="case-figs">
+        <div class="case-figs" data-speed="0.9">
           <img src="images/case1-xiaos.png" alt="康是美直播主視覺・徐熙娣小S">
           <img src="images/case1-yousiqi.png" alt="康是美直播主視覺・游絲棋老師">
         </div>
@@ -398,7 +403,7 @@ footer .en{font-family:var(--serif);font-style:italic;color:var(--brick)}
           <h4>跨部門協作</h4>
           <p>協調設計、開發與業務團隊，確保 3 方目標對齊，將原本預計兩週的開發時程縮短至 3 天，順利配合直播檔期上線。</p>
         </div>
-        <div class="case-figs">
+        <div class="case-figs" data-speed="0.9">
           <img src="images/case2-a.png" alt="Diamond Chef 氣炸鍋直播・石墨烯技術">
           <img src="images/case2-c.png" alt="Diamond Chef 案例">
         </div>
@@ -433,7 +438,7 @@ footer .en{font-family:var(--serif);font-style:italic;color:var(--brick)}
           <h4>價值延伸思考</h4>
           <p>從問券調查中，可以找到消費者的痛點進而轉化成產品頁使用情境導引優化拆解障礙，驗證了『精準對話』比『強力推銷』更具轉換力。</p>
         </div>
-        <div class="case-figs">
+        <div class="case-figs" data-speed="0.9">
           <img src="images/case3-a.jpg" alt="母嬰 SEO 內容・全孕期週記">
           <img src="images/case3-b.jpg" alt="母嬰 SEO 內容・母乳哺育">
           <img src="images/case3-c.png" alt="媽媽報報問卷調查・妊娠紋大調查">
@@ -512,10 +517,21 @@ footer .en{font-family:var(--serif);font-style:italic;color:var(--brick)}
   © 2026 林巧婷 <span class="en">Rebecca</span> ・ Marketing Portfolio
 </footer>
 
+</div></div><!-- /smooth-content /smooth-wrapper -->
+
 <script>
-// GSAP card fade-in
-gsap.registerPlugin(ScrollTrigger);
+// GSAP
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+  // Smooth scroll + parallax (data-speed 自動套用)
+  ScrollSmoother.create({
+    wrapper: "#smooth-wrapper",
+    content: "#smooth-content",
+    smooth: 1.5,
+    effects: true
+  });
+
+  // Card fade-in
   gsap.utils.toArray('.case').forEach(card => {
     const tl = gsap.timeline({
       scrollTrigger: { trigger: card, start: 'top 82%', toggleActions: 'play none none reset' }
@@ -526,6 +542,22 @@ gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
     .from(card.querySelector('.case-body'), {
       autoAlpha: 0, y: 30, duration: 0.7, ease: 'power2.out'
     }, '-=0.3');
+  });
+
+  // Number counter
+  gsap.utils.toArray('.hstat .num, .res .rnum').forEach(el => {
+    if (!el.querySelector('small')) return;
+    const textNode = [...el.childNodes].find(n => n.nodeType === 3);
+    if (!textNode) return;
+    const target = parseFloat(textNode.textContent.trim());
+    if (isNaN(target)) return;
+    const obj = { val: 0 };
+    gsap.to(obj, {
+      val: target, duration: 1.5, ease: 'power2.out',
+      snap: { val: 1 },
+      scrollTrigger: { trigger: el, start: 'top 88%' },
+      onUpdate() { textNode.textContent = Math.round(obj.val); }
+    });
   });
 });
 
