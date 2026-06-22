@@ -48,8 +48,9 @@ img{display:block;max-width:100%}
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;justify-content:space-between;align-items:center;
   padding:22px clamp(20px,5vw,56px);
-  transition:padding .35s ease,background .35s ease,box-shadow .35s ease;
+  transition:padding .35s ease,background .35s ease,box-shadow .35s ease,transform .35s ease;
 }
+.nav.hidden{transform:translateY(-100%)}
 .nav.scrolled{
   padding:14px clamp(20px,5vw,56px);
   background:rgba(253,252,250,.88);
@@ -279,10 +280,12 @@ footer .en{font-family:var(--serif);font-style:italic;color:var(--brick)}
 @media(prefers-reduced-motion:reduce){
   .reveal,.hero .stagger{opacity:1!important;transform:none!important;animation:none!important}
 }
+.dim{color:var(--ink-3);font-weight:300}
+#scroll-progress{position:fixed;top:0;left:0;width:100%;height:2px;background:var(--brick);transform-origin:left;transform:scaleX(0);z-index:201;pointer-events:none}
 </style>
 </head>
 <body>
-
+<div id="scroll-progress"></div>
 <!-- ===== Nav ===== -->
 <nav class="nav" id="nav">
   <a href="#top" class="nav-brand">林巧婷 <span class="en">Rebecca</span></a>
@@ -323,7 +326,7 @@ footer .en{font-family:var(--serif);font-style:italic;color:var(--brick)}
 <section id="capabilities">
   <div class="wrap">
     <div class="sec-label reveal"><span class="no">01</span><span class="bar"></span>能力地圖 ・ CAPABILITIES</div>
-    <h2 class="sec-title reveal">從策略到落地，<br>全鏈路的行銷能力。</h2>
+    <h2 class="sec-title reveal"><span class="dim">從策略到落地，</span><br>全鏈路的行銷能力。</h2>
     <p class="sec-intro reveal">短期戰役與長期經營都能獨立操盤——這是我跨三個產業累積下來的可遷移能力。</p>
     <div class="cap-grid">
       <div class="cap-row reveal"><span class="cap-no">i</span><span class="cap-name">整合行銷企劃</span><span class="cap-desc">行銷活動規劃與執行、年度大型展會操盤</span></div>
@@ -341,7 +344,7 @@ footer .en{font-family:var(--serif);font-style:italic;color:var(--brick)}
 <section id="work" class="works">
   <div class="wrap">
     <div class="sec-label reveal"><span class="no">02</span><span class="bar"></span>代表作 ・ SELECTED WORK</div>
-    <h2 class="sec-title reveal">三個產業，三種能力，<br>都用成效說話。</h2>
+    <h2 class="sec-title reveal"><span class="dim">三個產業，三種能力，</span><br>都用成效說話。</h2>
 
     <!-- Case 01 -->
     <article class="case">
@@ -490,7 +493,7 @@ footer .en{font-family:var(--serif);font-style:italic;color:var(--brick)}
 <section id="certs" class="certs">
   <div class="wrap">
     <div class="sec-label reveal"><span class="no">04</span><span class="bar"></span>證照認證 ・ CERTIFICATIONS</div>
-    <h2 class="sec-title reveal">數據與數位能力，<br>有官方認證背書。</h2>
+    <h2 class="sec-title reveal"><span class="dim">數據與數位能力，</span><br>有官方認證背書。</h2>
     <div class="cert-list">
       <div class="cert reveal"><span class="ci">01</span><div><div class="cn">Google Ads 搜尋廣告認證</div><div class="cy">2023</div></div></div>
       <div class="cert reveal"><span class="ci">02</span><div><div class="cn">Google Analytics 4（GA4）認證</div><div class="cy">2023</div></div></div>
@@ -505,7 +508,7 @@ footer .en{font-family:var(--serif);font-style:italic;color:var(--brick)}
 <section id="contact" class="contact">
   <div class="wrap">
     <div class="sec-label reveal"><span class="no">05</span><span class="bar"></span>聯絡 ・ CONTACT</div>
-    <h2 class="reveal">一起把品牌<br>做出 <span class="en">成效</span>。</h2>
+    <h2 class="reveal"><span class="dim">一起把品牌</span><br>做出 <span class="en">成效</span>。</h2>
     <p class="contact-sub reveal">歡迎聊聊合作機會，或任何行銷上的挑戰。</p>
     <div class="contact-links reveal">
       <a class="clink primary" href="mailto:aa0206aa@gmail.com">✉ aa0206aa@gmail.com</a>
@@ -561,10 +564,23 @@ gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
   });
 });
 
-// Nav scroll state
+// Nav：scrolled 樣式 + 往下捲隱藏、往上捲現身
 const nav=document.getElementById('nav');
-const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>40);
+let lastY=0;
+const onScroll=()=>{
+  const y=window.scrollY;
+  nav.classList.toggle('scrolled',y>40);
+  nav.classList.toggle('hidden',y>120&&y>lastY);
+  lastY=y;
+};
 onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+// Scroll progress indicator
+gsap.to('#scroll-progress',{
+  scaleX:1,ease:'none',
+  scrollTrigger:{trigger:document.body,start:'top top',end:'bottom bottom',scrub:true}
+});
+
 
 // Reveal on scroll
 const io=new IntersectionObserver((entries)=>{
